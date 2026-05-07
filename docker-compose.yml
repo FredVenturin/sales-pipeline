@@ -45,3 +45,16 @@ services:
     <<: *airflow-common
     command: scheduler
     restart: always
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:1.7.0
+    volumes:
+      - ./dbt:/usr/app/dbt
+    working_dir: /usr/app/dbt
+    environment:
+      DBT_PROFILES_DIR: /usr/app/dbt
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - dbt
