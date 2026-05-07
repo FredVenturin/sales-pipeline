@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: public
+    tables:
+      - name: bronze_sales
+        description: "Raw sales data loaded from CSV into PostgreSQL"
+        columns:
+          - name: order_id
+            description: "Unique order identifier"
+          - name: customer_name
+            description: "Customer full name"
+          - name: product
+            description: "Product name"
+          - name: category
+            description: "Product category"
+          - name: quantity
+            description: "Order quantity — may contain negative values (data quality issue)"
+          - name: unit_price
+            description: "Unit price — may contain nulls (data quality issue)"
+          - name: region
+            description: "Sales region"
+          - name: status
+            description: "Order status — may contain invalid values (data quality issue)"
+          - name: order_date
+            description: "Order date as text"
