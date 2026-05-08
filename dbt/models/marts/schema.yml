@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_sales
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: unit_price
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['completed', 'pending', 'processing']
+      - name: quantity
+        tests:
+          - not_null
+
+  - name: revenue_by_region
+    columns:
+      - name: region
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
+
+  - name: top_products
+    columns:
+      - name: product
+        tests:
+          - unique
+          - not_null
+
+  - name: customer_summary
+    columns:
+      - name: customer_name
+        tests:
+          - not_null
+
+  - name: monthly_trends
+    columns:
+      - name: month
+        tests:
+          - unique
+          - not_null
