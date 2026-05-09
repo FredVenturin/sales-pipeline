@@ -27,9 +27,10 @@ def search_bronze() -> Path:
 
 
 def create_bronze_table(cur) -> None:
-    # Drop existing table and recreate — ensures idempotency on every pipeline run
+    # Drop existing table (CASCADE removes dependent views like stg_sales) and recreate
+    # dbt will recreate the views in the dbt_staging task
     cur.execute("""
-        DROP TABLE IF EXISTS bronze_sales;
+        DROP TABLE IF EXISTS bronze_sales CASCADE;
         CREATE TABLE bronze_sales (
             order_id      INTEGER,
             customer_name TEXT,
